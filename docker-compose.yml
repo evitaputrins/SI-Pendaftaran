@@ -1,8 +1,8 @@
 version: '3.8'
 services:
   php-apache-environment:
-    image: evitapns/uas
-    container_name: php-apache-uas
+    image: evitapns/kuis2
+    container_name: php-apache-uas2
     links:
     - "db"
     depends_on:
@@ -15,19 +15,19 @@ services:
       - backend
 
   db:
-    container_name: db_uas
+    container_name: db_uas2
     image: mysql
     restart: always
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=1
       - MYSQL_ALLOW_RANDOM_PASSWORD=1
-      - MYSQL_ROOT_PASSWORD: 
-      - MYSQL_DATABASE: db_pendaftaran
+      - MYSQL_ROOT_PASSWORD=
+      - MYSQL_DATABASE= db_pendaftaran
     ports:
       - "9906:3306"
     volumes:
       - db:/var/lib/mysql
-      - ./app/database/db_pendaftaran.sql:/docker-entrypoint-initdb.d/db_pendaftaran.sql
+      - ./app/db_pendaftaran.sql:/docker-entrypoint-initdb.d/testing.sql
     networks:
       - backend
 
